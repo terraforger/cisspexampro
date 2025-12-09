@@ -63,15 +63,22 @@ export default function ProfilePage() {
         },
       })
 
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to create checkout session')
+      }
+
       const { sessionId } = await response.json()
       const stripe = await stripePromise
 
-      if (stripe) {
+      if (stripe && sessionId) {
         await stripe.redirectToCheckout({ sessionId })
+      } else {
+        throw new Error('Stripe not initialized or no session ID')
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error creating checkout session:', error)
-      alert('Failed to start checkout. Please try again.')
+      alert(error.message || 'Failed to start checkout. Please try again.')
     }
   }
 
