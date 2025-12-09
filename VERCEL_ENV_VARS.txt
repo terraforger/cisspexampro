@@ -1,0 +1,23 @@
+# Copy these environment variables to Vercel
+# Go to: Vercel Project → Settings → Environment Variables
+# Add each one individually
+# IMPORTANT: Replace the placeholder values with your actual keys from .env.local
+
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+
+STRIPE_SECRET_KEY=your_stripe_secret_key
+
+STRIPE_ANNUAL_PRICE_ID=your_stripe_price_id
+
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
+# NOTE: Update this after setting up Stripe webhook in production
+
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+# NOTE: Update this to your Vercel URL after deployment (e.g., https://your-app.vercel.app)
+
