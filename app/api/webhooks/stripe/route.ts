@@ -143,6 +143,26 @@ export async function POST(request: NextRequest) {
 
         break
       }
+
+      case 'invoice.payment_action_required': {
+        // Payment requires user action (e.g., 3D Secure)
+        // Keep subscription active but mark as needing attention
+        const invoice = event.data.object as Stripe.Invoice
+        const customerId = invoice.customer as string
+
+        const { data: existingSub } = await supabase
+          .from('subscriptions')
+          .select('user_id')
+          .eq('stripe_customer_id', customerId)
+          .single()
+
+        if (existingSub) {
+          // Don't change status - subscription is still active, just needs payment action
+          // Stripe will send another event when payment is completed or fails
+        }
+
+        break
+      }
     }
 
     return NextResponse.json({ received: true })
