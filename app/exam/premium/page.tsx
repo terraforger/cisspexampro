@@ -24,6 +24,7 @@ export default function PremiumExamPage() {
 
   useEffect(() => {
     checkAccess()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function PremiumExamPage() {
 
       return () => clearInterval(interval)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startedAt, showResults])
 
   const checkAccess = async () => {
